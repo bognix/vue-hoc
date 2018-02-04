@@ -12,7 +12,7 @@ const withSubscription = (component, selectData) => {
                     ...inheritedProps,
                     data: this.fetchedData
                 },
-                ...context
+                on: {...this.$listeners}
             })
         },
         props: [...inheritedProps],

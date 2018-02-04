@@ -2,7 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <blog-post :id="1"/>
+    <blog-post :id="1" @click="onClick"/>
     <comments-list/>
   </div>
 </template>
@@ -27,6 +27,11 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    onClick(msg) {
+      alert(msg)
     }
   }
 }
