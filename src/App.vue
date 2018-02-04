@@ -2,7 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <blog-post/>
+    <blog-post :id="1"/>
     <comments-list/>
   </div>
 </template>
@@ -10,11 +10,19 @@
 <script>
 import CommentsList from './components/CommentsList'
 import BlogPost from './components/BlogPost'
+import withSubscription from './hocs/withSubscription'
+import DataSource from './store/source'
+
+const BlogPostWithSubscription = withSubscription(BlogPost, (DataSource, props) => {
+  return DataSource.getBlogPost(props.id)
+})
+const CommentsListWithSubscription = withSubscription(CommentsList, (DataSource) => DataSource.getComments())
+
 export default {
   name: 'app',
   components: {
-    'blog-post': BlogPost,
-    'comments-list': CommentsList
+    'blog-post': BlogPostWithSubscription,
+    'comments-list': CommentsListWithSubscription
   },
   data () {
     return {
