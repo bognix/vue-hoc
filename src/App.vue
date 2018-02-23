@@ -11,7 +11,6 @@
 import CommentsList from './components/CommentsList'
 import BlogPost from './components/BlogPost'
 import withSubscription from './hocs/withSubscription'
-import DataSource from './store/source'
 
 const BlogPostWithSubscription = withSubscription(BlogPost, (DataSource, props) => {
   return DataSource.getBlogPost(props.id)

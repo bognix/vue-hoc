@@ -6,7 +6,7 @@ const withSubscription = (component, selectData) => {
     const inheritedProps = component.props || [];
 
     return Vue.component('withSubscription', {
-        render(createElement, context) {
+        render(createElement) {
             return createElement(component, {
                 props: {
                     ...inheritedProps,
@@ -23,7 +23,7 @@ const withSubscription = (component, selectData) => {
         },
         methods: {
             handleChange() {
-                this.fetchedData = selectData(DataSource, this._props)
+                this.fetchedData = selectData(DataSource, this.$props)
             }
         },
         mounted() {
