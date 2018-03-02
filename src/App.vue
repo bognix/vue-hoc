@@ -10,18 +10,12 @@
 <script>
 import CommentsList from './components/CommentsList'
 import BlogPost from './components/BlogPost'
-import withSubscription from './hocs/withSubscription'
-
-const BlogPostWithSubscription = withSubscription(BlogPost, (DataSource, props) => {
-  return DataSource.getBlogPost(props.id)
-})
-const CommentsListWithSubscription = withSubscription(CommentsList, (DataSource) => DataSource.getComments())
 
 export default {
   name: 'app',
   components: {
-    'blog-post': BlogPostWithSubscription,
-    'comments-list': CommentsListWithSubscription
+    'blog-post': BlogPost,
+    'comments-list': CommentsList
   },
   data () {
     return {

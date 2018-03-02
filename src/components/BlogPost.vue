@@ -2,12 +2,21 @@
     <div>
         <button @click="$emit('click', 'aloha')">CLICK ME!</button>
         <br/>
-        {{data}}
+        {{fetchedData}}
     </div>
 </template>
 
 <script>
+    import withSubscription from '../mixins/withSubscription'
+    import DataSource from '../store/source'
+
     export default {
-        props: ['data', 'id']
+        props: ['id'],
+        mixins: [withSubscription],
+        methods: {
+            selectData() {
+                return DataSource.getBlogPost(this.id)
+            }
+        },
     }
 </script>

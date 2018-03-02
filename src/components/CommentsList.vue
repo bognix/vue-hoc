@@ -1,12 +1,19 @@
 <template>
     <ul>
-        <li v-for="(comment, index) in data" :key="index">{{comment}}</li>
+        <li v-for="(comment, index) in fetchedData" :key="index">{{comment}}</li>
     </ul>
 </template>
 
 <script>
+    import withSubscription from '../mixins/withSubscription'
+    import DataSource from '../store/source'
+
     export default {
-        name: 'comments-list',
-        props: ['data']
+        mixins: [withSubscription],
+        methods: {
+            selectData() {
+                return DataSource.getComments()
+            }
+        }
     }
 </script>
