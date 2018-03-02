@@ -2,26 +2,29 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <blog-post :id="1" @click="onClick"/>
-    <comments-list/>
+    <with-subscription :selectData="(DataSource, props) => DataSource.getBlogPost(props.id)" :id="1">
+      <blog-post slot-scope="withSubscriptionScope" :id="withSubscriptionScope.id" :data="withSubscriptionScope.data" @click="onClick"/>
+    </with-subscription>
+    <with-subscription :selectData="(DataSource) => DataSource.getComments()">
+      <comments-list slot-scope="withSubscriptionScope" :data="withSubscriptionScope.data"/>
+    </with-subscription>
+    <with-subscription :selectData="() => 'Data is passed to scoped slot'">
+      <p slot-scope="withSubscriptionScope">{{withSubscriptionScope.data}}</p>
+    </with-subscription>
   </div>
 </template>
 
 <script>
 import CommentsList from './components/CommentsList'
 import BlogPost from './components/BlogPost'
-import withSubscription from './hocs/withSubscription'
-
-const BlogPostWithSubscription = withSubscription(BlogPost, (DataSource, props) => {
-  return DataSource.getBlogPost(props.id)
-})
-const CommentsListWithSubscription = withSubscription(CommentsList, (DataSource) => DataSource.getComments())
+import WithSubscription from './components/WithSubscription'
 
 export default {
   name: 'app',
   components: {
-    'blog-post': BlogPostWithSubscription,
-    'comments-list': CommentsListWithSubscription
+    'blog-post': BlogPost,
+    'comments-list': CommentsList,
+    'with-subscription': WithSubscription
   },
   data () {
     return {
