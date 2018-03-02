@@ -9,7 +9,6 @@
     import DataSource from '../store/source'
 
     export default {
-        mixins: [withSubscription],
         methods: {
             selectData() {
                 return DataSource.getComments()

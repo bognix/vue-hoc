@@ -10,12 +10,14 @@
 <script>
 import CommentsList from './components/CommentsList'
 import BlogPost from './components/BlogPost'
+import withSubscription from './mixins/withSubscription'
+import Vue from 'vue'
 
 export default {
   name: 'app',
   components: {
-    'blog-post': BlogPost,
-    'comments-list': CommentsList
+    'blog-post': Vue.extend(withSubscription).extend(BlogPost),
+    'comments-list': Vue.extend(withSubscription).extend(CommentsList)
   },
   data () {
     return {

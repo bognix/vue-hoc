@@ -8,7 +8,6 @@
 </template>
 
 <script>
-    import withSubscription from '../mixins/withSubscription'
     import DataSource from '../store/source'
 
     export default {
@@ -18,7 +17,6 @@
             }
         },
         props: ['id'],
-        mixins: [withSubscription],
         methods: {
             selectData() {
                 return DataSource.getBlogPost(this.id)
