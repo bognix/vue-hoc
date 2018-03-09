@@ -30,7 +30,7 @@ export default {
     DataSource.addChangeListener(this.handleChange)
   },
   beforeDestroy() {
-    DataSource.addChangeListener(this.handleChange)
+    DataSource.removeChangeListener(this.handleChange)
   }
 }
 </script>

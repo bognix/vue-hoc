@@ -23,7 +23,7 @@ const withSubscription = (component, selectData) => {
         },
         methods: {
             handleChange() {
-                this.fetchedData = selectData(DataSource, this.$props)
+                this.fetchedData = selectData(DataSource)
             }
         },
         mounted() {

@@ -2,8 +2,8 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <with-subscription :selectData="(DataSource, props) => DataSource.getBlogPost(props.id)" :id="1">
-      <blog-post slot-scope="withSubscriptionScope" :id="withSubscriptionScope.id" :data="withSubscriptionScope.data" @click="onClick"/>
+    <with-subscription :selectData="(DataSource) => DataSource.getBlogPost(blogPostId)">
+      <blog-post slot-scope="withSubscriptionScope" :id="blogPostId" :data="withSubscriptionScope.data" @click="onClick"/>
     </with-subscription>
     <with-subscription :selectData="(DataSource) => DataSource.getComments()">
       <comments-list slot-scope="withSubscriptionScope" :data="withSubscriptionScope.data"/>
@@ -28,7 +28,8 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      blogPostId: 1
     }
   },
   methods: {
