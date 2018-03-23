@@ -2,6 +2,8 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
+    <blog-post-with-mixin :id="1" @click="onClick"/>
+    <comments-list-with-mixin/>
     <blog-post :id="1" @click="onClick"/>
     <comments-list/>
   </div>
@@ -16,8 +18,10 @@ import Vue from 'vue'
 export default {
   name: 'app',
   components: {
-    'blog-post': Vue.extend(withSubscription).extend(BlogPost),
-    'comments-list': Vue.extend(withSubscription).extend(CommentsList)
+    'blog-post-with-mixin': Vue.extend(withSubscription).extend(BlogPost),
+    'blog-post': BlogPost,
+    'comments-list-with-mixin': Vue.extend(withSubscription).extend(CommentsList),
+    'comments-list': CommentsList
   },
   data () {
     return {
