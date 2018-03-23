@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot id="1" :data="fetchedData"></slot>
+    <slot :data="fetchedData"></slot>
   </div>
 </template>
 <script>
@@ -17,9 +17,6 @@ export default {
       type: Function,
       required: true
     },
-    id: {
-      type: Number
-    }
   },
   methods: {
     handleChange() {
