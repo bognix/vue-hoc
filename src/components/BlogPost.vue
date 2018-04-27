@@ -13,7 +13,8 @@
     export default {
         data() {
             return {
-                greeting: ''
+                greeting: '',
+                fetchedData: ''
             }
         },
         props: ['id'],
