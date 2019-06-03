@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot :data="fetchedData"></slot>
+    <slot name="someSlotName" :data="fetchedData"></slot>
   </div>
 </template>
 <script>
