@@ -2,14 +2,24 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <with-subscription :selectData="(DataSource) => DataSource.getBlogPost(blogPostId)">
-      <blog-post slot-scope="withSubscriptionScope" :id="blogPostId" :data="withSubscriptionScope.data" @click="onClick"/>
+
+    <with-subscription #someSlotName="{ data }"
+                       :selectData="DataSource => DataSource.getBlogPost(blogPostId)"
+    >
+      <blog-post :id="blogPostId"
+                 :data="data"
+                 @click="onClick"
+      />
     </with-subscription>
-    <with-subscription :selectData="(DataSource) => DataSource.getComments()">
-      <comments-list slot-scope="withSubscriptionScope" :data="withSubscriptionScope.data"/>
+
+    <with-subscription #someSlotName="{ data }"
+                       :selectData="DataSource => DataSource.getComments()"
+    >
+      <comments-list :data="data"/>
     </with-subscription>
-    <with-subscription :selectData="() => 'Data is passed to scoped slot'">
-      <p slot-scope="withSubscriptionScope">{{withSubscriptionScope.data}}</p>
+
+    <with-subscription #someSlotName="{ data }" :selectData="() => 'Data is passed to scoped slot'">
+      <p>{{data}}</p>
     </with-subscription>
   </div>
 </template>
